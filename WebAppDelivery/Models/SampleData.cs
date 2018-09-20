@@ -43,9 +43,12 @@ namespace WebAppDelivery.Models
                         FromCompany = "West.LCC",
                         FromCountry = "US",
                         FromState = "TX",
-                        FromSity = "Research Boulevard",
-                        
-                        FromAddress = "",// todo: init DB and show
+                        FromSity = "Austin",
+                        FromAddress = "Research Boulevard",
+
+
+
+                        FromAddress2 = "",// todo: init DB and show
                         
                     }
                 );
