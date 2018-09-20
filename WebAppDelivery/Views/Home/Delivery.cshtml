@@ -1,0 +1,992 @@
+﻿@model WebAppDelivery.Models.PackageModel
+
+@{
+    ViewData["Title"] = "ViewDelivery";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<link rel="stylesheet" href="~/css/delivery.css" />
+<h4>PackageModel</h4>
+<hr />
+<div class="row">
+        <div class="DeliveryForm">
+            <form asp-action="Delivery" method="get">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <div class="form">
+                        <h2>Enter your (From) address and the recipient's (To) address : </h2>
+                        <section class="fromBar">
+                            <h4>From Address:</h4>
+                            <div class="from-name">
+                                <label for="from-name" class="input-text">Your name</label>
+                                <input name="from-name" id="from-name">
+                            </div>
+                            <div class="from-co">
+                                <label for="from-co" class="fx-input-text">Company</label>
+                                <input name="from-co" id="from-co" data-error-field="AddressInformationModel.fromAddress.company"
+                                       tagnotation-error-field="SENDER.COMPANYNAME"
+                                       class="input-text" maxlength="45" placeholder="Yor company"
+                                       value="" aria-label="Shipper's Company">
+                            </div>
+                            <div class="from-country">
+                                <label for="from-country" class="country-select">Country / Location</label>
+                                <select name="from-country" id="from-country" onchange="selectedFromCountry()" data-error-field="AddressInformationModel.fromAddress.country" class="country-select" aria-required="true" aria-label="Shipper's Country Location">
+                                    <option value="">Select</option>
+                                    <option value="AF">Afghanistan</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AO">Angola</option>
+                                    <option value="AI">Anguilla</option>
+                                    <option value="AG">Antigua</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="AM">Armenia</option>
+                                    <option value="AW">Aruba</option>
+                                    <option value="AT">Austria</option>
+                                    <option value="AZ">Azerbaijan</option>
+                                    <option value="BS">Bahamas</option>
+                                    <option value="BH">Bahrain</option>
+                                    <option value="BD">Bangladesh</option>
+                                    <option value="BB">Barbados</option>
+                                    <option value="BAR">Barbuda</option>
+                                    <option value="BY">Belarus</option>
+                                    <option value="BE">Belgium</option>
+                                    <option value="BZ">Belize</option>
+                                    <option value="BM">Bermuda</option>
+                                    <option value="BO">Bolivia</option>
+                                    <option value="BON">Bonaire (Caribbean Netherlands)</option>
+                                    <option value="BA">Bosnia-Herzegovina</option>
+                                    <option value="BW">Botswana</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="VG">British Virgin Islands</option>
+                                    <option value="BG">Bulgaria</option>
+                                    <option value="BI">Burundi</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="CAIS">Canary Islands</option>
+                                    <option value="BQ">Caribbean Netherlands</option>
+                                    <option value="KY">Cayman Islands</option>
+                                    <option value="CHIS">Channel Islands</option>
+                                    <option value="CL">Chile</option>
+                                    <option value="CO">Colombia</option>
+                                    <option value="CR">Costa Rica</option>
+                                    <option value="HR">Croatia</option>
+                                    <option value="CW">Curacao</option>
+                                    <option value="CY">Cyprus</option>
+                                    <option value="CZ">Czech Republic</option>
+                                    <option value="DK">Denmark</option>
+                                    <option value="DJ">Djibouti</option>
+                                    <option value="DM">Dominica</option>
+                                    <option value="DO">Dominican Republic</option>
+                                    <option value="EC">Ecuador</option>
+                                    <option value="EG">Egypt</option>
+                                    <option value="SV">El Salvador</option>
+                                    <option value="ENG">England</option>
+                                    <option value="EE">Estonia</option>
+                                    <option value="ET">Ethiopia</option>
+                                    <option value="FI">Finland</option>
+                                    <option value="FR">France</option>
+                                    <option value="GF">French Guiana</option>
+                                    <option value="GE">Georgia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="GH">Ghana</option>
+                                    <option value="GI">Gibraltar</option>
+                                    <option value="GRCA">Grand Cayman</option>
+                                    <option value="GRBR">Great Britain</option>
+                                    <option value="GRTH">Great Thatch Island</option>
+                                    <option value="GRTO">Great Tobago Islands</option>
+                                    <option value="GR">Greece</option>
+                                    <option value="GD">Grenada</option>
+                                    <option value="GP">Guadaloupe</option>
+                                    <option value="GT">Guatemala</option>
+                                    <option value="GY">Guyana</option>
+                                    <option value="HT">Haiti</option>
+                                    <option value="HOL">Holland</option>
+                                    <option value="HN">Honduras</option>
+                                    <option value="HU">Hungary</option>
+                                    <option value="IS">Iceland</option>
+                                    <option value="IN">India</option>
+                                    <option value="IQ">Iraq</option>
+                                    <option value="IE">Ireland</option>
+                                    <option value="IL">Israel</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="CI">Ivory Coast</option>
+                                    <option value="JM">Jamaica</option>
+                                    <option value="JO">Jordan</option>
+                                    <option value="JVDI">Jost Van Dyke Islands</option>
+                                    <option value="KZ">Kazakhstan</option>
+                                    <option value="KE">Kenya</option>
+                                    <option value="KW">Kuwait</option>
+                                    <option value="LV">Latvia</option>
+                                    <option value="LB">Lebanon</option>
+                                    <option value="LS">Lesotho</option>
+                                    <option value="LY">Libya</option>
+                                    <option value="LT">Lithuania</option>
+                                    <option value="LU">Luxembourg</option>
+                                    <option value="MK">Macedonia</option>
+                                    <option value="MG">Madagascar</option>
+                                    <option value="MW">Malawi</option>
+                                    <option value="MV">Maldives</option>
+                                    <option value="MT">Malta</option>
+                                    <option value="MQ">Martinique</option>
+                                    <option value="MU">Mauritius</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="MD">Moldova</option>
+                                    <option value="ME">Montenegro</option>
+                                    <option value="MS">Montserrat</option>
+                                    <option value="MA">Morocco</option>
+                                    <option value="MZ">Mozambique</option>
+                                    <option value="NA">Namibia</option>
+                                    <option value="NP">Nepal</option>
+                                    <option value="NL">Netherlands</option>
+                                    <option value="NI">Nicaragua</option>
+                                    <option value="NG">Nigeria</option>
+                                    <option value="NOIS">Norman Island</option>
+                                    <option value="NOIR">Northern Ireland</option>
+                                    <option value="NO">Norway</option>
+                                    <option value="OM">Oman</option>
+                                    <option value="PK">Pakistan</option>
+                                    <option value="PA">Panama</option>
+                                    <option value="PY">Paraguay</option>
+                                    <option value="PE">Peru</option>
+                                    <option value="PL">Poland</option>
+                                    <option value="PT">Portugal</option>
+                                    <option value="PR">Puerto Rico</option>
+                                    <option value="QA">Qatar</option>
+                                    <option value="RO">Romania</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="RW">Rwanda</option>
+                                    <option value="SAB">Saba (Caribbean Netherlands)</option>
+                                    <option value="SAMA">San Marino</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="SCO">Scotland</option>
+                                    <option value="RS">Serbia</option>
+                                    <option value="SK">Slovak Republic</option>
+                                    <option value="SI">Slovenia</option>
+                                    <option value="ZA">South Africa</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="LK">Sri Lanka</option>
+                                    <option value="STBA">St. Barthelemy</option>
+                                    <option value="STCH">St. Christopher</option>
+                                    <option value="STCR">St. Croix Island</option>
+                                    <option value="STEU">St. Eustatius (Caribbean Netherlands)</option>
+                                    <option value="STJO">St. John</option>
+                                    <option value="KN">St. Kitts And Nevis</option>
+                                    <option value="LC">St. Lucia</option>
+                                    <option value="SX">St. Maarten</option>
+                                    <option value="MF">St. Martin</option>
+                                    <option value="STTH">St. Thomas</option>
+                                    <option value="VC">St. Vincent</option>
+                                    <option value="SR">Suriname</option>
+                                    <option value="SZ">Swaziland</option>
+                                    <option value="SE">Sweden</option>
+                                    <option value="CH">Switzerland</option>
+                                    <option value="TZ">Tanzania</option>
+                                    <option value="TG">Togo</option>
+                                    <option value="TOIS">Tortola Island</option>
+                                    <option value="TT">Trinidad &amp; Tobago</option>
+                                    <option value="TN">Tunisia</option>
+                                    <option value="TR">Turkey</option>
+                                    <option value="TC">Turks And Caicos Islands</option>
+                                    <option value="UG">Uganda</option>
+                                    <option value="UA">Ukraine</option>
+                                    <option value="UNIS">Union Island</option>
+                                    <option value="AE">United Arab Emirates</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="VACI">Vatican City</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="WAL">Wales</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </div>
+                            <div hidden id="from-state-section" class="from-state">
+                                <label for="from-state" id="from-state-label" class="select">State</label>
+                                <select name="from-state" id="from-state" data-error-field="AddressInformationModel.fromAddress.state" tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STATEORPROVINCECODE SENDER.ADDRESS.STATEORPROVINCECODE" class="fx-select fx-wrapped-select" aria-required="true" aria-label="Shipper's State">
+                                    <option value="">Select</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                            <div class="from-city">
+                                <label for="from-city" class="input-text">City</label>
+                                <input name="from-city" id="from-city" data-error-field="AddressInformationModel.fromAddress.city"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.CITY SENDER.CITY"
+                                       placeholder="" class="input-text" maxlength="35" value="" aria-required="true" aria-label="Shipper's City">
+                            </div>
+                            <div class="from-addr1">
+                                <label for="from-addr1" class="input-text">Address</label>
+                                <input name="from-addr1" id="from-addr1" data-error-field="AddressInformationModel.fromAddress.address1"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STREETLINELIST.0.STREETLINE SENDER.STREETLINE1"
+                                       placeholder="Street address" class="input-text" maxlength="45"
+                                       value="" aria-required="true" aria-label="Shipper's Address Line number one">
+                            </div>
+                            <div class="from-apartment-number">
+                                <label for="from-apartment-number" class="input-text">Apartment</label>
+                                <input name="from-apartment-number" id="from-apartment-number" data-error-field="AddressInformationModel.fromAddress.apartmentNumber"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STREETLINELIST.0.STREETLINE SENDER.STREETLINE1"
+                                       placeholder="Apartment Number" class="input-text" maxlength="10"
+                                       value="" aria-required="true" aria-label="Shipper's Address Apartment Number">
+                            </div>
+                            <div class="from-addr2">
+                                <label for="from-addr2" class="input-text"><span class="ui-hidden-accessible" aria-hidden="true">Address 2</span></label>
+                                <input name="from-addr2" id="from-addr2" tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STREETLINELIST.1.STREETLINE"
+                                       style="text-overflow: ellipsis;"
+                                       placeholder="Apt, Floor, Suite, etc.. (optional)" maxlength="45" class="input-text"
+                                       value="" aria-label="Shipper's Address Line number two">
+                            </div>
+                            <div class="from-zip">
+                                <label for="from-zip" id="from-zip-label" class="input-text">ZIP</label>
+                                <input name="from-zip" id="from-zip" data-error-field="AddressInformationModel.fromAddress.zipCode"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.POSTALCODE SENDER.ADDRESS.POSTALCODE"
+                                       placeholder="zip code"
+                                       class="input-text" maxlength="10" value="" aria-required="true" aria-label="Shipper's Zip or Postal code">
+                            </div>
+                            <div class="from-zip">
+                                <label for="from-zip" id="from-zip-label" class="input-text">Postal code</label>
+                                <input name="from-zip" id="from-zip" data-error-field="AddressInformationModel.fromAddress.zipCode" tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.POSTALCODE SENDER.ADDRESS.POSTALCODE" placeholder="postal code" class="input-text" maxlength="10" value="" aria-required="true" aria-label="Shipper's Zip or Postal code">
+                            </div>
+                            <div class="from-phone">
+                                <div class="from-phone">
+                                    <label for="from-phone" class="input-text">Phone</label>
+                                    <input name="from-phone" id="from-phone" data-error-field="AddressInformationModel.fromAddress.phone"
+                                           placeholder="phone (max 15)"
+                                           tagnotation-error-field="SENDER.PARTY.PHONENUMBER" class="input-text phone" type="tel"
+                                           maxlength="15" value="" aria-required="true" aria-label="Shipper's Phone">
+                                </div>
+                            </div>
+                            <div class="from-email" style="display:inline-block;">
+                                <label for="from-email" class="input-text">Email notifications</label>
+                                <input name="from-email" id="from-email" data-error-field="AddressInformationModel.fromAddress.email"
+                                       tagnotation-error-field="SENDER.PARTY.CONTACT.EMAILADDRESS" class="input-text" maxlength="80" placeholder="example@gmail.com"
+                                       value="" style="display:inline-block;" aria-label="Shipper's Email Notification">
+                                <div class="icon-question" title="Your email address will be used to provide notifications for this shipment.">
+                                    <img class="icon-question" src="~/images/me_help_827520.png" alt="">
+                                </div>
+
+
+                            </div>
+                        </section>
+
+                        <section class="toWhom">
+                            <h4>To Address:</h4>
+                            <div class="to-name">
+                                <label for="to-name" class="input-text">To name</label>
+                                <input name="to-name" id="to-name">
+                            </div>
+                            <div class="to-co">
+                                <label for="to-co" class="input-text">Company</label>
+                                <input name="to-co" id="to-co" data-error-field="AddressInformationModel.toAddress.company"
+                                       tagnotation-error-field="RECIPIENT.COMPANYNAME" class="input-text" maxlength="35"
+                                       placeholder="Yor company" value="" aria-label="Recipient's Company">
+                            </div>
+                            <div class="to-country">
+                                <label for="to-country"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.COUNTRYCODE RECIPIENT.%>COUNTRYCODE"
+                                       class="select">Country / Location</label>
+                                <select name="to-country" id="to-country" onchange="selectedFromCountry()" data-error-field="AddressInformationModel.toAddress.country"
+                                        class="select" aria-required="true" aria-label="Recipient's Country Location">
+                                    <option value="">Select</option>
+                                    <option value="AF">Afghanistan</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AO">Angola</option>
+                                    <option value="AI">Anguilla</option>
+                                    <option value="AG">Antigua</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="AM">Armenia</option>
+                                    <option value="AW">Aruba</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AT">Austria</option>
+                                    <option value="AZ">Azerbaijan</option>
+                                    <option value="BS">Bahamas</option>
+                                    <option value="BH">Bahrain</option>
+                                    <option value="BD">Bangladesh</option>
+                                    <option value="BB">Barbados</option>
+                                    <option value="BAR">Barbuda</option>
+                                    <option value="BY">Belarus</option>
+                                    <option value="BE">Belgium</option>
+                                    <option value="BZ">Belize</option>
+                                    <option value="BJ">Benin</option>
+                                    <option value="BM">Bermuda</option>
+                                    <option value="BT">Bhutan</option>
+                                    <option value="BO">Bolivia</option>
+                                    <option value="BON">Bonaire (Caribbean Netherlands)</option>
+                                    <option value="BA">Bosnia-Herzegovina</option>
+                                    <option value="BW">Botswana</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="VG">British Virgin Islands</option>
+                                    <option value="BN">Brunei</option>
+                                    <option value="BG">Bulgaria</option>
+                                    <option value="BF">Burkina Faso</option>
+                                    <option value="BI">Burundi</option>
+                                    <option value="KH">Cambodia</option>
+                                    <option value="CM">Cameroon</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="CAIS">Canary Islands</option>
+                                    <option value="CV">Cape Verde</option>
+                                    <option value="BQ">Caribbean Netherlands</option>
+                                    <option value="KY">Cayman Islands</option>
+                                    <option value="TD">Chad</option>
+                                    <option value="CHIS">Channel Islands</option>
+                                    <option value="CL">Chile</option>
+                                    <option value="CN">China</option>
+                                    <option value="CO">Colombia</option>
+                                    <option value="CG">Congo</option>
+                                    <option value="CD">Congo Dem. Rep. Of</option>
+                                    <option value="CK">Cook Islands</option>
+                                    <option value="CR">Costa Rica</option>
+                                    <option value="HR">Croatia</option>
+                                    <option value="CU">Cuba</option>
+                                    <option value="CW">Curacao</option>
+                                    <option value="CY">Cyprus</option>
+                                    <option value="CZ">Czech Republic</option>
+                                    <option value="DK">Denmark</option>
+                                    <option value="DJ">Djibouti</option>
+                                    <option value="DM">Dominica</option>
+                                    <option value="DO">Dominican Republic</option>
+                                    <option value="TL">East Timor</option>
+                                    <option value="EC">Ecuador</option>
+                                    <option value="EG">Egypt</option>
+                                    <option value="SV">El Salvador</option>
+                                    <option value="ENG">England</option>
+                                    <option value="GQ">Equatorial Guinea</option>
+                                    <option value="ER">Eritrea</option>
+                                    <option value="EE">Estonia</option>
+                                    <option value="ET">Ethiopia</option>
+                                    <option value="FO">Faeroe Islands</option>
+                                    <option value="FJ">Fiji</option>
+                                    <option value="FI">Finland</option>
+                                    <option value="FR">France</option>
+                                    <option value="GF">French Guiana</option>
+                                    <option value="PF">French Polynesia</option>
+                                    <option value="GA">Gabon</option>
+                                    <option value="GM">Gambia</option>
+                                    <option value="GE">Georgia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="GH">Ghana</option>
+                                    <option value="GI">Gibraltar</option>
+                                    <option value="GRCA">Grand Cayman</option>
+                                    <option value="GRBR">Great Britain</option>
+                                    <option value="GRTH">Great Thatch Island</option>
+                                    <option value="GRTO">Great Tobago Islands</option>
+                                    <option value="GR">Greece</option>
+                                    <option value="GL">Greenland</option>
+                                    <option value="GD">Grenada</option>
+                                    <option value="GP">Guadaloupe</option>
+                                    <option value="GU">Guam</option>
+                                    <option value="GT">Guatemala</option>
+                                    <option value="GN">Guinea</option>
+                                    <option value="GY">Guyana</option>
+                                    <option value="HT">Haiti</option>
+                                    <option value="HOL">Holland</option>
+                                    <option value="HN">Honduras</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="HU">Hungary</option>
+                                    <option value="IS">Iceland</option>
+                                    <option value="IN">India</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="IQ">Iraq</option>
+                                    <option value="IE">Ireland</option>
+                                    <option value="IL">Israel</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="CI">Ivory Coast</option>
+                                    <option value="JM">Jamaica</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="JO">Jordan</option>
+                                    <option value="JVDI">Jost Van Dyke Islands</option>
+                                    <option value="KZ">Kazakhstan</option>
+                                    <option value="KE">Kenya</option>
+                                    <option value="KI">Kiribati</option>
+                                    <option value="KW">Kuwait</option>
+                                    <option value="KG">Kyrgyzstan</option>
+                                    <option value="LA">Laos</option>
+                                    <option value="LV">Latvia</option>
+                                    <option value="LB">Lebanon</option>
+                                    <option value="LS">Lesotho</option>
+                                    <option value="LR">Liberia</option>
+                                    <option value="LY">Libya</option>
+                                    <option value="LI">Liechtenstein</option>
+                                    <option value="LT">Lithuania</option>
+                                    <option value="LU">Luxembourg</option>
+                                    <option value="MO">Macau</option>
+                                    <option value="MK">Macedonia</option>
+                                    <option value="MG">Madagascar</option>
+                                    <option value="MW">Malawi</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="MV">Maldives</option>
+                                    <option value="ML">Mali</option>
+                                    <option value="MT">Malta</option>
+                                    <option value="MH">Marshall Islands</option>
+                                    <option value="MQ">Martinique</option>
+                                    <option value="MR">Mauritania</option>
+                                    <option value="MU">Mauritius</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="FM">Micronesia</option>
+                                    <option value="MD">Moldova</option>
+                                    <option value="MC">Monaco</option>
+                                    <option value="MN">Mongolia</option>
+                                    <option value="ME">Montenegro</option>
+                                    <option value="MS">Montserrat</option>
+                                    <option value="MA">Morocco</option>
+                                    <option value="MZ">Mozambique</option>
+                                    <option value="NA">Namibia</option>
+                                    <option value="NR">Nauru</option>
+                                    <option value="NP">Nepal</option>
+                                    <option value="NL">Netherlands</option>
+                                    <option value="NC">New Caledonia</option>
+                                    <option value="NZ">New Zealand</option>
+                                    <option value="NI">Nicaragua</option>
+                                    <option value="NE">Niger</option>
+                                    <option value="NG">Nigeria</option>
+                                    <option value="NU">Niue</option>
+                                    <option value="NOIS">Norman Island</option>
+                                    <option value="NOIR">Northern Ireland</option>
+                                    <option value="MP">Northern Mariana Islands</option>
+                                    <option value="NO">Norway</option>
+                                    <option value="OM">Oman</option>
+                                    <option value="PK">Pakistan</option>
+                                    <option value="PW">Palau</option>
+                                    <option value="PS">Palestine</option>
+                                    <option value="PA">Panama</option>
+                                    <option value="PG">Papua New Guinea</option>
+                                    <option value="PY">Paraguay</option>
+                                    <option value="PE">Peru</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="PL">Poland</option>
+                                    <option value="PT">Portugal</option>
+                                    <option value="PR">Puerto Rico</option>
+                                    <option value="QA">Qatar</option>
+                                    <option value="RE">Reunion</option>
+                                    <option value="RO">Romania</option>
+                                    <option value="ROT">Rota</option>
+                                    <option value="RU">Russia</option>
+                                    <option value="RW">Rwanda</option>
+                                    <option value="SAB">Saba (Caribbean Netherlands)</option>
+                                    <option value="SAI">Saipan</option>
+                                    <option value="WS">Samoa</option>
+                                    <option value="SAMA">San Marino</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="SCO">Scotland</option>
+                                    <option value="SN">Senegal</option>
+                                    <option value="RS">Serbia</option>
+                                    <option value="SC">Seychelles</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="SK">Slovak Republic</option>
+                                    <option value="SI">Slovenia</option>
+                                    <option value="SB">Solomon Islands</option>
+                                    <option value="ZA">South Africa</option>
+                                    <option value="KR">South Korea</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="LK">Sri Lanka</option>
+                                    <option value="STBA">St. Barthelemy</option>
+                                    <option value="STCH">St. Christopher</option>
+                                    <option value="STCR">St. Croix Island</option>
+                                    <option value="STEU">St. Eustatius (Caribbean Netherlands)</option>
+                                    <option value="STJO">St. John</option>
+                                    <option value="KN">St. Kitts And Nevis</option>
+                                    <option value="LC">St. Lucia</option>
+                                    <option value="SX">St. Maarten</option>
+                                    <option value="MF">St. Martin</option>
+                                    <option value="STTH">St. Thomas</option>
+                                    <option value="VC">St. Vincent</option>
+                                    <option value="SR">Suriname</option>
+                                    <option value="SZ">Swaziland</option>
+                                    <option value="SE">Sweden</option>
+                                    <option value="CH">Switzerland</option>
+                                    <option value="SY">Syria</option>
+                                    <option value="TAH">Tahiti</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="TZ">Tanzania</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="TIN">Tinian</option>
+                                    <option value="TG">Togo</option>
+                                    <option value="TO">Tonga</option>
+                                    <option value="TOIS">Tortola Island</option>
+                                    <option value="TT">Trinidad &amp; Tobago</option>
+                                    <option value="TN">Tunisia</option>
+                                    <option value="TR">Turkey</option>
+                                    <option value="TM">Turkmenistan</option>
+                                    <option value="TC">Turks And Caicos Islands</option>
+                                    <option value="TV">Tuvalu</option>
+                                    <option value="UG">Uganda</option>
+                                    <option value="UA">Ukraine</option>
+                                    <option value="UNIS">Union Island</option>
+                                    <option value="AE">United Arab Emirates</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="VI">US Virgin Islands</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VU">Vanuatu</option>
+                                    <option value="VACI">Vatican City</option>
+                                    <option value="VE">Venezuela</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="WAL">Wales</option>
+                                    <option value="WF">Wallis &amp; Futuna Islands</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                </select>
+                            </div>
+                            <div hidden id="to-state-section" class="to-state">
+                                <label for="to-state" id="to-state-label" class="select">State</label>
+                                <select name="to-state" id="to-state" data-error-field="AddressInformationModel.toAddress.state" tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.STATEORPROVINCECODE RECIPIENT.ADDRESS.STATEORPROVINCECODE" class="select wrapped-select" aria-required="true" aria-label="Recipient's State">
+                                    <option value="">Select</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="DC">District of Columbia</option>
+                                    <option value="FL">Florida</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="HI">Hawaii</option>
+                                    <option value="ID">Idaho</option>
+                                    <option value="IL">Illinois</option>
+                                    <option value="IN">Indiana</option>
+                                    <option value="IA">Iowa</option>
+                                    <option value="KS">Kansas</option>
+                                    <option value="KY">Kentucky</option>
+                                    <option value="LA">Louisiana</option>
+                                    <option value="ME">Maine</option>
+                                    <option value="MD">Maryland</option>
+                                    <option value="MA">Massachusetts</option>
+                                    <option value="MI">Michigan</option>
+                                    <option value="MN">Minnesota</option>
+                                    <option value="MS">Mississippi</option>
+                                    <option value="MO">Missouri</option>
+                                    <option value="MT">Montana</option>
+                                    <option value="NE">Nebraska</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="NH">New Hampshire</option>
+                                    <option value="NJ">New Jersey</option>
+                                    <option value="NM">New Mexico</option>
+                                    <option value="NY">New York</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="ND">North Dakota</option>
+                                    <option value="OH">Ohio</option>
+                                    <option value="OK">Oklahoma</option>
+                                    <option value="OR">Oregon</option>
+                                    <option value="PA">Pennsylvania</option>
+                                    <option value="RI">Rhode Island</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="SD">South Dakota</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="TX">Texas</option>
+                                    <option value="UT">Utah</option>
+                                    <option value="VT">Vermont</option>
+                                    <option value="VA">Virginia</option>
+                                    <option value="WA">Washington</option>
+                                    <option value="WV">West Virginia</option>
+                                    <option value="WI">Wisconsin</option>
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
+                            <div class="to-city">
+                                <label for="to-city" class="input-text">City</label>
+                                <input name="to-city" id="to-city" data-error-field="AddressInformationModel.toAddress.city"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.CITY RECIPIENT.CITY"
+                                       placeholder="" class="input-text mod-hinter-input" maxlength="35" value="" aria-required="true" aria-label="Recipient's City">
+                                <div class="mod-hinter-drop" tabindex="-1" style="top: 411.672px; left: 938.672px; display: none;"></div>
+                                <ul class="mod-hinter-menu" tabindex="-1" style="position: absolute; max-height: 200px; width: 266px; top: 433.672px; left: 696.672px;"></ul>
+                            </div>
+                            <div class="to-addr1">
+                                <label for="to-addr1" class="input-text">Address</label>
+                                <input name="to-addr1" id="to-addr1" data-error-field="AddressInformationModel.toAddress.address1"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.STREETLINELIST.0.STREETLINE RECIPIENT.STREETLINE1"
+                                       placeholder="Street address" class="input-text" maxlength="45" value="" aria-required="true" aria-label="Recipient's Address Line number one">
+                            </div>
+                            <div class="to-apartment-number">
+                                <label for="to-apartment-number" class="input-text">Apartment</label>
+                                <input name="to-apartment-number" id="to-apartment-number" data-error-field="AddressInformationModel.fromAddress.apartmentNumber"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STREETLINELIST.0.STREETLINE SENDER.STREETLINE1"
+                                       placeholder="Apartment Number" class="input-text" maxlength="10"
+                                       value="" aria-required="true" aria-label="Shipper's Address Apartment Number">
+                            </div>
+                            <div class="to-addr2">
+                                <label for="to-addr2" class="input-text"><span class="ui-hidden-accessible" aria-hidden="true">Address2</span></label>
+                                <input name="to-addr2" id="to-addr2" tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.STREETLINELIST.1.STREETLINE"
+                                       style="text-overflow:ellipsis; margin-top: 0.1em;"
+                                       placeholder="Apt, Floor, Suite, etc.. (optional)" maxlength="45" class="input-text"
+                                       value="" aria-label="Recipient's Address Line number Two">
+                            </div>
+                            <div class="to-zip">
+                                <label for="to-zip" id="to-zip-label" class="input-text">ZIP</label>
+                                <input name="to-zip" id="to-zip" data-error-field="AddressInformationModel.toAddress.zipCode"
+                                       tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.POSTALCODE RECIPIENT.ADDRESS.POSTALCODE"
+                                       placeholder="zip code"
+                                       class="input-text" maxlength="10" value="" aria-required="true" aria-label="Recipient's Zip or Postal code">
+                            </div>
+                            <div class="to-zip">
+                                <label for="to-zip" id="to-zip-label" class="input-text">Postal code</label>
+                                <input name="to-zip" id="to-zip" data-error-field="AddressInformationModel.toAddress.zipCode" tagnotation-error-field="REQUESTEDSHIPMENT.RECIPIENTLIST.0.RECIPIENT.ADDRESS.POSTALCODE RECIPIENT.ADDRESS.POSTALCODE" placeholder="postal code" class="input-text" maxlength="10" value="" aria-required="true" aria-label="Recipient's Zip or Postal code">
+                            </div>
+                            <div class="to-phone">
+                                <label for="to-phone" class="input-text">Phone</label>
+                                <input name="to-phone" id="to-phone" data-error-field="AddressInformationModel.toAddress.phone"
+                                       tagnotation-error-field="RECIPIENT.PARTY.PHONENUMBER"
+                                       placeholder="phone (max 15)"
+                                       class="input-text phone" type="tel" maxlength="15" value="" aria-required="true" aria-label="Recipient's Phone">
+                            </div>
+                            <div class="to-email" style="clear:both;">
+                                <label for="to-email" class="input-text">Email notifications</label>
+                                <input name="to-email" id="to-email" data-error-field="AddressInformationModel.toAddress.email"
+                                       tagnotation-error-field="RECIPIENT.PARTY.CONTACT.EMAILADDRESS" class="fx-input-text" maxlength="80"
+                                       placeholder="example@gmail.com" value="" style="display:inline-block;" aria-label="Recipient's Email Notification">
+                                <div class="icon-question" title="Your email address will be used to provide notifications for this shipment.">
+                                    <img class="icon-question" src="~/images/me_help_827520.png" alt="">
+                                </div>
+                            </div>
+                        </section>
+                        
+                        <section class="package">
+                            Package Shipment Details
+                            <div class="myForm">
+                                <!-- Select Basic -->
+                                <div class="form-group">
+                                    <label class="shipService control-label" for="selectbasic">Select Basic carriers:</label>
+                                    <div class="shipService">
+                                        <select id="selectbasic" name="selectbasic" class="form-control">
+                                            <option value="1">USPS - United States Postal Service</option>
+                                            <option value="2">FedEx</option>
+                                            <option value="3">UPS - United Parcel Service</option>
+                                            <option value="4">DHL</option>
+                                            <option value="5">Australia Post</option>
+                                            <option value="5">Canada Post</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <p>
+                                    <label>
+                                        Package Type:
+                                        <select id="packageTypeId" name="namePackageType" onchange="selectedPackT()">
+                                            <option value="" selected="selected">Select One</option>
+                                            <option value="envelope">envelope</option>
+                                            <option value="bag">bag</option>
+                                            <option value="box">box</option>
+                                            <option value="etc">etc.</option>
+                                        </select>
+                                    </label>
+                                    <label id="demo" style="display:inline-block;"></label>
+                                    <input type="text" value="" id="trace" />
+                                    <div id="image-dropdown" onchange="updatePackT()">
+                                        <input checked="checked" type="radio" id="line1" name="line-style" value="1" /><label for="line1"></label>
+                                        <input type="radio" id="line2" name="line-style" value="2" /><label for="line2"></label>
+                                        <input type="radio" id="line3" name="line-style" value="3" /><label for="line3"></label>
+                                        <input type="radio" id="line4" name="line-style" value="4" /><label for="line4"></label>
+                                        <input type="radio" id="line5" name="line-style" value="5" /><label for="line5"></label>
+                                        <input type="radio" id="line6" name="line-style" value="6" /><label for="line6"></label>
+                                        <input type="radio" id="line7" name="line-style" value="7" /><label for="line7"></label>
+                                    </div>
+                                </p>
+
+                                <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Dimension Type:</label>
+                                <div class="dimensionType">
+                                    <select id="dimensionTypeId" name="nameDimensionType">
+                                        <option value="" selected="selected">Select One</option>
+                                        <option value="inches">inches</option>
+                                        <option value="centimeters">centimeters</option>
+                                        <option value="etc">etc.</option>
+                                    </select>
+                                    <div class="form-length-container" style="display: inline">
+                                        <label for="form-length" class="input-text" style="display: inline-block;">Length</label>
+                                        <input name="form-length" id="form-length" type="number" style="display: inline-block;" />
+                                    </div>
+                                    <div class="form-Width-container">
+                                        <label for="form-Width" class="input-text">Width</label>
+                                        <input name="form-Width" id="form-Width" type="number" />
+
+                                    </div>
+                                    <div class="form-Height-container">
+                                        <label for="form-Height" class="input-text">Height</label>
+                                        <input name="form-Height" id="form-Height" type="number" />
+                                    </div>
+                                </div>
+                                <p>
+                                    <label>
+                                        Weighte Type:
+                                        <select id="WeightTypeId" name="nameWeightType">
+                                            <option value="" selected="selected">Select One</option>
+                                            <option value="ounces">ounces</option>
+                                            <option value="pounds">pounds</option>
+                                            <option value="grams">grams</option>
+                                            <option value="etc">etc.</option>
+                                        </select>
+                                    </label>
+                                    <div class="form-Weight-container">
+                                        <label for="form-Weight" class="input-text">Weight</label>
+                                        <input name="form-Weight" id="form-Weight" type="number" />
+                                    </div>
+                                </p>
+                                <p>
+                                    <label>
+                                        CurrencyType:
+                                        <select id="CurrencyId" name="CurrencyType">
+                                            <option value="USD" selected="selected">United States Dollars</option>
+                                            <option value="EUR">Euro</option>
+                                            <option value="GBP">United Kingdom Pounds</option>
+                                            <option value="DZD">Algeria Dinars</option>
+                                            <option value="ARP">Argentina Pesos</option>
+                                            <option value="AUD">Australia Dollars</option>
+                                            <option value="ATS">Austria Schillings</option>
+                                            <option value="BSD">Bahamas Dollars</option>
+                                            <option value="BBD">Barbados Dollars</option>
+                                            <option value="BEF">Belgium Francs</option>
+                                            <option value="BMD">Bermuda Dollars</option>
+                                            <option value="BRR">Brazil Real</option>
+                                            <option value="BGL">Bulgaria Lev</option>
+                                            <option value="CAD">Canada Dollars</option>
+                                            <option value="CLP">Chile Pesos</option>
+                                            <option value="CNY">China Yuan Renmimbi</option>
+                                            <option value="CYP">Cyprus Pounds</option>
+                                            <option value="CSK">Czech Republic Koruna</option>
+                                            <option value="DKK">Denmark Kroner</option>
+                                            <option value="NLG">Dutch Guilders</option>
+                                            <option value="XCD">Eastern Caribbean Dollars</option>
+                                            <option value="EGP">Egypt Pounds</option>
+                                            <option value="FJD">Fiji Dollars</option>
+                                            <option value="FIM">Finland Markka</option>
+                                            <option value="FRF">France Francs</option>
+                                            <option value="DEM">Germany Deutsche Marks</option>
+                                            <option value="XAU">Gold Ounces</option>
+                                            <option value="GRD">Greece Drachmas</option>
+                                            <option value="HKD">Hong Kong Dollars</option>
+                                            <option value="HUF">Hungary Forint</option>
+                                            <option value="ISK">Iceland Krona</option>
+                                            <option value="INR">India Rupees</option>
+                                            <option value="IDR">Indonesia Rupiah</option>
+                                            <option value="IEP">Ireland Punt</option>
+                                            <option value="ILS">Israel New Shekels</option>
+                                            <option value="ITL">Italy Lira</option>
+                                            <option value="JMD">Jamaica Dollars</option>
+                                            <option value="JPY">Japan Yen</option>
+                                            <option value="JOD">Jordan Dinar</option>
+                                            <option value="KRW">Korea (South) Won</option>
+                                            <option value="LBP">Lebanon Pounds</option>
+                                            <option value="LUF">Luxembourg Francs</option>
+                                            <option value="MYR">Malaysia Ringgit</option>
+                                            <option value="MXP">Mexico Pesos</option>
+                                            <option value="NLG">Netherlands Guilders</option>
+                                            <option value="NZD">New Zealand Dollars</option>
+                                            <option value="NOK">Norway Kroner</option>
+                                            <option value="PKR">Pakistan Rupees</option>
+                                            <option value="XPD">Palladium Ounces</option>
+                                            <option value="PHP">Philippines Pesos</option>
+                                            <option value="XPT">Platinum Ounces</option>
+                                            <option value="PLZ">Poland Zloty</option>
+                                            <option value="PTE">Portugal Escudo</option>
+                                            <option value="ROL">Romania Leu</option>
+                                            <option value="RUR">Russia Rubles</option>
+                                            <option value="SAR">Saudi Arabia Riyal</option>
+                                            <option value="XAG">Silver Ounces</option>
+                                            <option value="SGD">Singapore Dollars</option>
+                                            <option value="SKK">Slovakia Koruna</option>
+                                            <option value="ZAR">South Africa Rand</option>
+                                            <option value="KRW">South Korea Won</option>
+                                            <option value="ESP">Spain Pesetas</option>
+                                            <option value="XDR">Special Drawing Right (IMF)</option>
+                                            <option value="SDD">Sudan Dinar</option>
+                                            <option value="SEK">Sweden Krona</option>
+                                            <option value="CHF">Switzerland Francs</option>
+                                            <option value="TWD">Taiwan Dollars</option>
+                                            <option value="THB">Thailand Baht</option>
+                                            <option value="TTD">Trinidad and Tobago Dollars</option>
+                                            <option value="TRL">Turkey Lira</option>
+                                            <option value="VEB">Venezuela Bolivar</option>
+                                            <option value="ZMK">Zambia Kwacha</option>
+                                            <option value="EUR">Euro</option>
+                                            <option value="XCD">Eastern Caribbean Dollars</option>
+                                            <option value="XDR">Special Drawing Right (IMF)</option>
+                                            <option value="XAG">Silver Ounces</option>
+                                            <option value="XAU">Gold Ounces</option>
+                                            <option value="XPD">Palladium Ounces</option>
+                                            <option value="XPT">Platinum Ounces</option>
+                                        </select>
+                                    </label>                                
+                                    <div class="form-Amount" style="display: inline">
+                                        <label for="form-Amount" class="input-text" style="display: inline-block;">Amount</label>
+                                        <input name="form-Amount" id="form-Amount" type="number" style="display: inline-block;" />
+                                    </div>
+                                </p>
+                                <fieldset>
+                                    <legend>Which taxi do you require?</legend>
+                                    <p><label class="choice"> <input type="radio" name="taxi" required value="car"> Car </label></p>
+                                    <p><label class="choice"> <input type="radio" name="taxi" required value="van"> Van </label></p>
+                                    <p><label class="choice"> <input type="radio" name="taxi" required value="tuktuk"> Tuk Tuk </label></p>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Extras</legend>
+                                    <p><label class="choice"> <input type="checkbox" name="extras" value="baby"> Baby Seat </label></p>
+                                    <p><label class="choice"> <input type="checkbox" name="extras" value="wheelchair"> Wheelchair Access </label></p>
+                                    <p><label class="choice"> <input type="checkbox" name="extras" value="tip"> Stock Tip </label></p>
+                                </fieldset>
+
+                                <p>
+                                    <label>
+                                        Pickup Date/Time
+                                        <input type="datetime-local" name="pickup_time" required>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Pickup Place
+                                        <select id="pickup_place" name="pickup_place">
+                                            <option value="" selected="selected">Select One</option>
+                                            <option value="office">Taxi Office</option>
+                                            <option value="town_hall">Town Hall</option>
+                                            <option value="telepathy">We'll Guess!</option>
+                                        </select>
+                                    </label>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Dropoff Place
+                                        <input type="text" name="dropoff_place" required list="destinations">
+                                    </label>
+
+                                    <datalist id="destinations">
+                                        <option value="Airport"></option>
+                                        <option value="Beach"></option>
+                                        <option value="Fred Flinstone's House"></option>
+                                    </datalist>
+                                </p>
+
+                                <p>
+                                    <label>
+                                        Special Instructions
+                                        <textarea name="comments" maxlength="500"></textarea>
+                                    </label>
+                                </p>
+
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                <p><button>Submit ORDER</button></p>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+
+    </div>
+</div>
+@*Form*@
+
+
+
+@*task*@
+
+<p class="task">
+    <h5>
+        <text>
+            Create a .Net CORE 2.1 REST API that interfaces to these shipping APIs:<br>
+            We should support all countries that the following carriers deliver to:<br>
+            USPS - United States Postal Service<br>
+            FedEx<br>
+            UPS - United Parcel Service<br>
+            DHL<br>
+            Australia Post<br>
+            Canada Post<br>
+            <br>
+            There should be on exposed method:
+            <br>
+            public List<ShippingOption>
+                getShippingOptions(Address fromAddress, Address toAddress, List<Package>
+                    , CurrencyName currency)<br>
+
+                    This will require creating these classes:<br>
+                    Shipping Option (CarrierName, CarrierService, Amount, date GuaranteedBy) - Amount should be in the requested currency.<br>
+                    CarrierService is whatever services the carrier offers for the from address and to address like Overnight, 2nd Day Air, 3 day ground, etc)<br>
+
+                    Address (Address Line 1, Address Line 2, Apartment Number, City, State, Postal Code, Country) etc.<br>
+
+                    Package (PackageType packageType, Length, Width, Height, DimensionType, Weight, WeightType) - packageType is envelope, bag, box, etc.,<br>
+                    DimensionType is inches or centimeters, WeightType is ounces, pounds, grams, etc.<br>
+
+                    Create a demonstration .Net CORE 2.1 MVC web application that allows a user to test all of the options.<br>
+                    Include a list of packages to choose from so various sizes and dimensions are represented.  <br>
+                    Allow the user to change the QTY of each package.  Allow the user to select from different addresses in a list for from and to.<br>
+                    Include at least two real addresses in the United Stated, UK, Germany, Brazil, Australia, New Zealand, South Africa, Norway, and Canada.<br>
+
+                    Add a drop down for dimension type<br>
+                    Add a drop down for measurement type<br>
+                    Add a drop down for currency type<br>
+
+                    Display a "Get Rates" button and display a list of available shipping options and costs.<br>
+                    $10.33/hr avg hourly rate paid<br>
+                    3,903 hours<br>
+        </text>
+    </h5>
+</p>
+
+<div>
+    <a asp-action="Index">Back to Index</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

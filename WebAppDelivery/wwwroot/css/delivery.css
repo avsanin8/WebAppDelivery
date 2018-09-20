@@ -1,0 +1,213 @@
+﻿@media screen and (max-width:1450px) {
+    .heading-left {
+        left: -0.5%;
+    }
+}
+
+.toWhom, .package, .fromBar {
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 100px;
+}
+
+.fromBar {
+    overflow: hidden;
+}
+
+.toWhom {
+    float: left; /* Колонка справа */
+    width: 25%; /* Ширина колонки */
+    background: #ffead0;
+}
+
+.fromBar {
+    float: left; /* Колонка слева */
+    width: 25%; /* Ширина колонки */
+    background: #fde9f1;
+}
+
+.package {
+      
+    width: 50%;
+    float: right;
+    background: #c8eaf5;
+}
+
+.icon-question {
+    display:inline-block;
+    width: 14px;
+    height: 14px;
+}
+
+
+Package
+.myForm {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 0.8em;
+    width: 20em;
+    padding: 1em;
+    border: 1px solid #ccc;
+}
+
+.myForm * {
+    box-sizing: border-box;
+}
+
+.myForm fieldset {
+    border: none;
+    padding: 0;
+}
+
+.myForm legend,
+.myForm label {
+    padding: 0;
+    font-weight: bold;
+}
+
+.myForm label.choice {
+    font-size: 0.9em;
+    font-weight: normal;
+}
+
+.myForm input[type="text"],
+.myForm input[type="tel"],
+.myForm input[type="email"],
+.myForm input[type="datetime-local"],
+.myForm select,
+.myForm textarea {
+    /*display: block;*/
+    width: 100%;
+    border: 1px solid #ccc;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 0.9em;
+    padding: 0.3em;
+}
+
+.myForm textarea {
+    height: 100px;
+}
+
+.myForm button {
+    padding: 1em;
+    border-radius: 0.5em;
+    background: #eee;
+    border: none;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.myForm button:hover {
+    background: #ccc;
+    cursor: pointer;
+}
+
+.task {
+    float:left;
+    box-sizing: border-box;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+
+/*o.v.*/
+
+#image-dropdown {
+    /*style the "box" in its minimzed state*/
+    border: 1px solid black;
+    width: 200px;
+    height: 50px;
+    overflow: hidden;
+    /*animate collapsing the dropdown from open to closed state (v. fast)*/
+    -moz-transition: height 0.1s;
+    -webkit-transition: height 0.1s;
+    -ms-transition: height 0.1s;
+    -o-transition: height 0.1s;
+    transition: height 0.1s;
+}
+
+#image-dropdown:hover {
+    /*when expanded, the dropdown will get native means of scrolling*/
+    height: 200px;
+    overflow-y: scroll;
+    /*nice and smooth expand - speed this up at your preference or remove animation altogether*/
+    -moz-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    transition: height 0.5s;
+}
+
+#image-dropdown input {
+    /*hide the nasty default radio buttons. like, completely!*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+
+#image-dropdown label {
+    /*style the labels to look like dropdown options, kinda*/
+    display: none;
+    margin: 2px;
+    height: 46px;
+    opacity: 0.2;
+    /*setting correct backgrounds - add additional rules with selectors based on "for" attribute, something like label[for=line2]{background-image:...}*/
+    /*background: url("http://www.google.com/images/srpr/logo3w.png") 50% 50%;*/
+
+}
+label[for=line1] {
+    background-image: url("../images/AllBox.png");
+    border: 1px solid black;
+    background-position:center;    
+    background-size: cover;
+}
+label[for=line2] {
+    background-image: url("../images/postage-pb2.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+label[for=line3] {
+    background-image: url("../images/postage-pb3.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+label[for=line4] {
+    background-image: url("../images/postage-pb4.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+label[for=line5] {
+    background-image: url("../images/postage-pb5.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+label[for=line6] {
+    background-image: url("../images/a4-file-box.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+label[for=line7] {
+    background-image: url("../images/document-box.jpg");
+    border: 1px solid black;
+    background-size: cover;
+}
+
+#image-dropdown:hover label {
+    /*this is how labels render in the "expanded" state. we want to see only the selected radio button in the collapsed menu, and all of them when expanded*/
+    display: block;
+}
+
+#image-dropdown label:hover {
+    opacity: 0.5;
+}
+
+#image-dropdown input:checked + label {
+    /*tricky! labels immediately following a checked radio button (with our markup they are semantically related) should be fully opaque regardless of hover, and they should always be visible (i.e. even in the collapsed menu*/
+    opacity: 1 !important;
+    display: block;
+}
+
+/*pfft, nothing as cool here, just the value trace*/
+#trace {
+    margin: 0 0 20px;
+}

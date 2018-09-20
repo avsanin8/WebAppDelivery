@@ -1,0 +1,20 @@
+#ignore all kind of files
+*
+#except php files
+!*.php
+!*.cs
+!*.css
+!*.js
+!*.jsx
+!*.map
+!*.cshtml
+!*.config
+!*.asax
+!*.html
+!*.gitignore
+
+!*.cpp
+!*.h
+
+# ...even if they are in subdirectories
+!*/
