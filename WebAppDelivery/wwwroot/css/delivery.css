@@ -107,9 +107,24 @@ Package
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
+/*#from-state-section {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity .5s ease-out;
+}
+
+    #from-state-section.visible {
+        position: static;
+        z-index: auto;
+        pointer-events: auto;
+        visibility: visible;
+        opacity: 1;
+    }*/
 
 /*o.v.*/
-
 #image-dropdown {
     /*style the "box" in its minimzed state*/
     border: 1px solid black;

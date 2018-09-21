@@ -200,8 +200,8 @@
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabwe</option>
                                 </select>
-                            </div>
-                            <div hidden id="from-state-section" class="from-state">
+                            </div>                            
+                            <div id="from-state-section" class="from-state">
                                 <label for="from-state" id="from-state-label" class="select">State</label>
                                 <select name="from-state" id="from-state" data-error-field="AddressInformationModel.fromAddress.state" tagnotation-error-field="REQUESTEDSHIPMENT.SHIPPER.ADDRESS.STATEORPROVINCECODE SENDER.ADDRESS.STATEORPROVINCECODE" class="fx-select fx-wrapped-select" aria-required="true" aria-label="Shipper's State">
                                     <option value="">Select</option>
@@ -258,6 +258,7 @@
                                     <option value="WY">Wyoming</option>
                                 </select>
                             </div>
+                            
                             <div class="from-city">
                                 <label for="from-city" class="input-text">City</label>
                                 <input name="from-city" id="from-city" data-error-field="AddressInformationModel.fromAddress.city"
@@ -771,7 +772,7 @@
                                     </label>
                                     <div class="form-Weight-container">
                                         <label for="form-Weight" class="input-text">Weight</label>
-                                        <input name="form-Weight" id="form-Weight" type="number" />
+                                        <input name="form-Weight" id="form-Weight" type="number" min="0"/>
                                     </div>
                                 </p>
                                 <p>
