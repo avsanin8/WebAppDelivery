@@ -14,7 +14,7 @@ namespace WebAppDelivery.Models
                 context.PackageModels.AddRange(
                     new PackageModel
                     {
-                        
+                        Id = 1,
                         carrierName = { Country = "US", Name = "USPS - United States Postal Service" },
                         carrierService = { IsEtc = true, IsOvernight = false, IsThreeDayGround = true, IsTwoDayAir = false },
                         PackageType = "box",
@@ -32,24 +32,44 @@ namespace WebAppDelivery.Models
                         DropoffPlace = "dropoff_place",
                         Destinations = "Airport",
                         SpecialInstructions = "comments" // maxLen 500
-
+                        
                     }
                 );
                 //Order
                 context.Orders.Add(
                     new Order
                     {
+                        OrderId = 1,
+
                         FromNameСustomer = "Vasya",
                         FromCompany = "West.LCC",
                         FromCountry = "US",
                         FromState = "TX",
                         FromSity = "Austin",
                         FromAddress = "Research Boulevard",
+                        FromApartment = "12845",
+                        FromAddress2 = "temp adress2",
+                        FromZIP = "78759",
+                        FromPostalCode = "78759",
+                        FromPhone = "+10123456789",
+                        FromEmail = "example@.gmail.com",
 
+                        ToNameСustomer = "Andrii",
+                        ToCompany = "East.LCC",
+                        ToCountry = "UA",
+                        ToState = "StateNone",
+                        ToSity = "Kakhovka",
+                        ToAddress = "To address 1",
+                        ToApartment = "Number 123",
+                        ToAddress2 = "To addr 2",
+                        ToZIP = "74800",
+                        ToPostalCode = "74800",
+                        ToPhone = "+380123456789",
+                        ToEmail = "example2@gmail.com",
 
+                        //PackageModel
+                        PackageModelId = 1
 
-                        FromAddress2 = "",// todo: init DB and show
-                        
                     }
                 );
                 context.SaveChanges();

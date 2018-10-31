@@ -10,6 +10,13 @@ namespace WebAppDelivery.Controllers
 {
     public class HomeController : Controller
     {
+        OrderContext orderContextDB;
+        public HomeController(OrderContext orderContext)
+        {
+            orderContextDB = orderContext;
+        }
+
+
         public IActionResult Index()
         {
             return View();
@@ -36,6 +43,8 @@ namespace WebAppDelivery.Controllers
         public IActionResult Delivery()
         {
             ViewData["Message"] = "Hello My delivery from HomeController Ha Ha HHAAaa!!...";
+
+            //return View(orderContextDB.Orders.ToList());
             return View();
         }
 

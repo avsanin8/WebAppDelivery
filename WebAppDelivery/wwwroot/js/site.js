@@ -92,10 +92,10 @@ function selectedFromCountry() {
     let fromCountry = document.getElementById("from-country").value;
     let toCountry = document.getElementById("to-country").value;
     if (fromCountry === "US") {
-        //document.getElementById("from-state-section").hidden = false;                
-        show(document.getElementById("from-state-section").id, 40, 200, 2);
+        document.getElementById("from-state-section").hidden = false;
+        show(document.getElementById("from-state-section").id, 40, 200, 3);
     } else {        
-        show(document.getElementById("from-state-section").id, 40, 200, -2);
+        //show(document.getElementById("from-state-section").id, 40, 200, -3);
         document.getElementById("from-state-section").hidden = true;
     }
     if (toCountry === "US") {
@@ -112,8 +112,11 @@ function selectedFromCountry() {
 let s = [], s_timer = [];//s - section
 function show(id, h, w, v)//id элемента,h высота, w- ,v скорость ---(-v) если блок надо первоначально закрывать
 {
-    
-    s[id] = s[id] === v ? -v : v;    
+    console.log(s);
+    console.log(s_timer);
+    s[id] = s[id] === v ? -v : v; //flag
+    //console.log(s[id]);
+    //console.log(s_timer[id]);
     s_timer[id] = setTimeout(function () {
         let obj = document.getElementById(id);
         let v_w = Math.ceil(w * s[id] / h); //

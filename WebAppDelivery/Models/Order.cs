@@ -37,7 +37,6 @@ namespace WebAppDelivery.Models
         public string ToEmail { get; set; }
 
         //PackageModel
-        public int PackageModelId { get; set; }
-        public PackageModel PackageModel { get; set; }
+        public int PackageModelId { get; set; }        
     }
 }
